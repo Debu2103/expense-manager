@@ -6,6 +6,10 @@ export default function ExpenseTable({ userId }: { userId: string }) {
   const { expensesByUser, deleteExpense } = useExpenses();
 
   const userExpenses = expensesByUser[userId] || [];
+  
+  console.log("[v0] userId:", userId);
+  console.log("[v0] expensesByUser:", expensesByUser);
+  console.log("[v0] userExpenses:", userExpenses);
 
   if (!userExpenses.length) return <p>No expenses</p>;
 
