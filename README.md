@@ -1,36 +1,174 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Expense Manager
 
-## Getting Started
+A modern web application for managing users and tracking their expenses. Built with Next.js, React, and TypeScript with real-time state management and form validation.
 
-First, run the development server:
+## Features
+
+### User Management
+
+- **Add Users**: Create new users with detailed information (name, email, gender, address, phone number)
+- **View Users**: Display all users in a responsive table format
+- **Edit Users**: Update existing user information
+- **Delete Users**: Remove users from the system
+- **User Navigation**: Quick access to individual user expense managers
+
+### Expense Management
+
+- **Add Expenses**: Create expense entries for specific users with title, amount, date, and description
+- **View Expenses**: Display all expenses for a specific user in an organized table
+- **User-Isolated View**: Each user sees only their own expenses when accessing the expense manager
+- **Delete Expenses**: Remove expense entries
+- **Expense Tracking**: Track expenses by user ID with proper data organization
+
+### Technical Features
+
+- Built with **Next.js 16** with App Router
+- **React Context API** for state management (UserContext and ExpenseContext)
+- **Form Validation** using Formik and Yup
+- **TypeScript** for type safety
+- **Tailwind CSS** for responsive styling
+- **Dynamic Routing** for user-specific expense pages
+
+## Project Structure
+
+```
+├── app/
+│   ├── Components/
+│   │   ├── Expenses/
+│   │   │   ├── ExpenseForm.tsx      # Add/Edit expense form
+│   │   │   └── ExpenseTable.tsx     # Display user expenses
+│   │   └── Users/
+│   │       ├── UserForm.tsx         # Add/Edit user form
+│   │       └── UserTable.tsx        # Display all users with navigation
+│   ├── Context/
+│   │   ├── UserContext.tsx          # User state management
+│   │   └── ExpenseContext.tsx       # Expense state management (organized by userId)
+│   ├── Providers/
+│   │   └── AppProviders.tsx         # Context providers wrapper
+│   ├── Types/
+│   │   ├── Users.ts                 # User interface
+│   │   └── Expense.ts               # Expense interface
+│   ├── expense-manager/
+│   │   └── [userId]/
+│   │       └── page.tsx             # User-specific expense manager page
+│   ├── layout.tsx                   # Root layout
+│   └── page.tsx                     # Home/User management page
+└── package.json
+```
+
+## Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Debu2103/expense-manager.git
+   cd expense-manager
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+## Running the Project
+
+### Development Mode
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build for production:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the production server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Linting
 
-## Deploy on Vercel
+Run ESLint to check code quality:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run lint
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Usage
+
+### 1. Create Users
+
+- Navigate to the home page (`/`)
+- Fill in the user form with first name, last name, email, gender, address, and phone number
+- Click "Add User" to create a new user
+- The user will appear in the users table below
+
+### 2. Manage Expenses
+
+- Click on a user's name in the table to navigate to their expense manager
+- The URL will be `/expense-manager/[userId]`
+- Add expenses using the expense form with title, amount, date, and optional description
+- View all expenses for that specific user in the expense table
+- Delete expenses as needed
+
+### 3. View All Users
+
+- Return to the home page to see all users
+- Edit or delete user information directly from the table
+
+## Technologies Used
+
+- **Framework**: [Next.js 16](https://nextjs.org) - React framework with App Router
+- **UI Library**: [React 19.2.3](https://react.dev)
+- **Language**: [TypeScript](https://www.typescriptlang.org)
+- **State Management**: React Context API
+- **Form Validation**: [Formik](https://formik.org) + [Yup](https://github.com/jquense/yup)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com)
+- **Linting**: [ESLint](https://eslint.org)
+
+## Data Storage
+
+The application uses React Context API for state management. All user and expense data is stored in memory and will be reset when the page is refreshed.
+
+**Note**: For production use, consider integrating a backend database (PostgreSQL, MongoDB, Firebase, etc.) to persist data.
+
+## Key Implementation Details
+
+- **Expense Filtering**: Expenses are organized by userId in the context, ensuring each user only sees their own expenses
+- **Dynamic Routes**: The expense manager uses dynamic routing (`[userId]`) to create user-specific pages
+- **Form Validation**: Both user and expense forms use Formik with Yup schemas for client-side validation
+- **Type Safety**: Full TypeScript implementation ensures type safety across components
+
+## Future Enhancements
+
+- Database integration (PostgreSQL, MongoDB, or Supabase) for persistent data storage
+- User authentication and authorization
+- Expense categories and advanced filtering
+- Expense statistics, charts, and analytics
+- Export expenses to PDF/CSV
+- Multi-currency support
+- Recurring expenses
+- Expense sharing and splitting
+- Mobile app version
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Author
+
+[Debu2103](https://github.com/Debu2103)
+
+## Contributing
+
+Contributions are welcome! Feel free to submit issues and pull requests.
