@@ -6,20 +6,22 @@ import ExpenseForm from "../../Components/Expenses/ExpenseForm";
 import ExpenseTable from "../../Components/Expenses/ExpenseTable";
 import { useUsers } from "../../Context/UserContext";
 import { useEffect, useState } from "react";
+import { use } from "react";
 
 export default function ExpenseManager({
   params,
 }: {
-  params: { userId: string };
+  params: Promise<{ userId: string }>;
 }) {
+  const { userId } = use(params);
   const router = useRouter();
   const { users } = useUsers();
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    const foundUser = users.find((u) => u.id === params.userId);
+    const foundUser = users.find((u) => u.id === userId);
     setUser(foundUser);
-  }, [params.userId, users]);
+  }, [userId, users]);
 
   if (!user) {
     return (
@@ -65,7 +67,7 @@ export default function ExpenseManager({
           borderRadius: "8px", 
           backgroundColor: "#f9f9f9" 
         }}>
-          <ExpenseForm userId={params.userId} />
+          <ExpenseForm userId={userId} />
         </div>
       </section>
 
@@ -77,7 +79,7 @@ export default function ExpenseManager({
           borderRadius: "8px",
           boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
         }}>
-          <ExpenseTable userId={params.userId} />
+          <ExpenseTable userId={userId} />
         </div>
       </section>
     </main>
