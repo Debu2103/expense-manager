@@ -10,13 +10,17 @@ type ExpenseState = {
 interface ExpenseContextType {
   expensesByUser: ExpenseState;
   addExpense: (userId: string, expense: Omit<Expense, "id">) => void;
+  updateExpense: (userId: string, expense: Expense) => void;
   deleteExpense: (userId: string, expenseId: string) => void;
+  selectedExpense: Expense | null;
+  selectExpense: (expense: Expense | null) => void;
 }
 
 const ExpenseContext = createContext<ExpenseContextType | null>(null);
 
 export function ExpenseProvider({ children }: { children: React.ReactNode }) {
   const [expensesByUser, setExpensesByUser] = useState<ExpenseState>({});
+  const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
 
   const addExpense = (userId: string, expense: Omit<Expense, "id">) => {
     setExpensesByUser((prev) => ({
@@ -28,6 +32,14 @@ export function ExpenseProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
+  const updateExpense = (userId: string, expense: Expense) => {
+    setExpensesByUser((prev) => ({
+      ...prev,
+      [userId]: prev[userId]?.map((e) => (e.id === expense.id ? expense : e)) || [],
+    }));
+    setSelectedExpense(null);
+  };
+
   const deleteExpense = (userId: string, expenseId: string) => {
     setExpensesByUser((prev) => ({
       ...prev,
@@ -35,9 +47,13 @@ export function ExpenseProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
+  const selectExpense = (expense: Expense | null) => {
+    setSelectedExpense(expense);
+  };
+
   return (
     <ExpenseContext.Provider
-      value={{ expensesByUser, addExpense, deleteExpense }}
+      value={{ expensesByUser, addExpense, updateExpense, deleteExpense, selectedExpense, selectExpense }}
     >
       {children}
     </ExpenseContext.Provider>

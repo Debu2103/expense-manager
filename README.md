@@ -6,19 +6,30 @@ A modern web application for managing users and tracking their expenses. Built w
 
 ### User Management
 
-- **Add Users**: Create new users with detailed information (name, email, gender, address, phone number)
-- **View Users**: Display all users in a responsive table format
-- **Edit Users**: Update existing user information
-- **Delete Users**: Remove users from the system
+- **Add Users**: Create new users with detailed information (name, email, role, gender, address, phone number)
+- **View Users**: Display all users in a responsive table format with name, email, and role
+- **Edit Users**: Update existing user information with form pre-fill
+- **Delete Users**: Remove users with confirmation dialog
+- **Role Management**: Assign roles (Admin, User, Manager) to users
 - **User Navigation**: Quick access to individual user expense managers
 
 ### Expense Management
 
 - **Add Expenses**: Create expense entries for specific users with title, amount, date, and description
+- **Edit Expenses**: Update existing expense entries with form pre-fill
 - **View Expenses**: Display all expenses for a specific user in an organized table
 - **User-Isolated View**: Each user sees only their own expenses when accessing the expense manager
-- **Delete Expenses**: Remove expense entries
+- **Delete Expenses**: Remove expense entries with confirmation dialog
 - **Expense Tracking**: Track expenses by user ID with proper data organization
+- **Currency Display**: Display amounts with currency formatting
+
+### UI/UX Improvements
+
+- **Confirmation Dialogs**: Delete confirmations to prevent accidental data loss
+- **Enhanced Styling**: Clean, modern interface with proper spacing and typography
+- **Responsive Tables**: Organized table layouts with clear action buttons
+- **Form Validation**: Comprehensive validation with error messages
+- **Navigation**: Easy navigation between user management and expense management pages
 
 ### Technical Features
 
@@ -109,22 +120,48 @@ npm run lint
 ### 1. Create Users
 
 - Navigate to the home page (`/`)
-- Fill in the user form with first name, last name, email, gender, address, and phone number
+- Fill in the user form with first name, last name, email, role, and optional gender, address, phone number
 - Click "Add User" to create a new user
-- The user will appear in the users table below
+- The user will appear in the users table below with their assigned role
 
-### 2. Manage Expenses
+### 2. Edit Users
 
-- Click on a user's name in the table to navigate to their expense manager
+- Click the "Edit" button next to a user in the table
+- The form will pre-populate with the user's current information
+- Make your changes and click "Update User"
+- The "Cancel" option appears when editing to clear the selection
+
+### 3. Delete Users
+
+- Click the "Delete" button next to a user in the table
+- The button will change color and show "Confirm Delete?" on the first click
+- Click again to confirm the deletion
+- The user and all their expenses will be removed
+
+### 4. Manage Expenses
+
+- Click on the "Expenses" link for any user to navigate to their expense manager
 - The URL will be `/expense-manager/[userId]`
-- Add expenses using the expense form with title, amount, date, and optional description
-- View all expenses for that specific user in the expense table
-- Delete expenses as needed
+- The page displays the user's name and shows all their expenses
 
-### 3. View All Users
+### 5. Add Expenses
 
-- Return to the home page to see all users
-- Edit or delete user information directly from the table
+- In the expense manager, fill in the expense form with title, amount, date, and optional description
+- Click "Add Expense" to create a new expense
+- The expense will appear in the expenses table below
+
+### 6. Edit Expenses
+
+- Click the "Edit" button next to an expense in the table
+- The form will pre-populate with the expense's current information
+- Make your changes and click "Update Expense"
+- Use the "Cancel" button to clear the selection
+
+### 7. Delete Expenses
+
+- Click the "Delete" button next to an expense in the table
+- The button will change color and show "Confirm?" on the first click
+- Click again to confirm the deletion
 
 ## Technologies Used
 
