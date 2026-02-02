@@ -23,17 +23,6 @@ export default function ExpenseManager({
     setUser(foundUser);
   }, [userId, users]);
 
-  if (!user) {
-    return (
-      <main style={{ padding: "20px", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-        <p>User not found</p>
-        <Link href="/" style={{ color: "#0066cc" }}>
-          Back to Users
-        </Link>
-      </main>
-    );
-  }
-
   return (
     <main style={{ padding: "20px", fontFamily: "system-ui, -apple-system, sans-serif" }}>
       <header style={{ marginBottom: "30px", borderBottom: "2px solid #333", paddingBottom: "15px" }}>
@@ -41,7 +30,7 @@ export default function ExpenseManager({
           <div>
             <h1 style={{ margin: "0 0 10px 0", fontSize: "28px" }}>💰 Expense Manager</h1>
             <p style={{ margin: "0", color: "#666", fontSize: "14px" }}>
-              Managing expenses for <strong>{user.fname} {user.lname}</strong>
+              {user ? `Managing expenses for ${user.fname} ${user.lname}` : `Expenses for User`}
             </p>
           </div>
           <Link 
