@@ -21,9 +21,9 @@ export default function RootLayout({
           }
           
           body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background-color: #f8f8f8;
+            color: #1a1a1a;
           }
           
           table {
@@ -37,58 +37,147 @@ export default function RootLayout({
           }
           
           table th, table td {
-            padding: 12px;
+            padding: 14px 12px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
           }
           
           table tbody tr:hover {
             background-color: #f9f9f9;
           }
           
-          form {
+          .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+          }
+          
+          .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 32px;
+            max-width: 480px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+          }
+          
+          .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+          }
+          
+          .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          
+          .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .modal-close:hover {
+            color: #333;
+          }
+          
+          .form-group {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
+            margin-bottom: 20px;
+          }
+          
+          .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
           }
           
           input, select, textarea {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
             font-family: inherit;
             font-size: 14px;
+            background-color: #f8f8f8;
+            color: #1a1a1a;
+            transition: border-color 0.2s;
           }
           
           input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #0066cc;
-            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+            border-color: #1a1a1a;
+            background-color: white;
+          }
+          
+          .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 28px;
           }
           
           button {
-            padding: 10px 16px;
-            background-color: #0066cc;
+            padding: 12px 24px;
+            background-color: #1a1a1a;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             transition: background-color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
           }
           
           button:hover {
-            background-color: #0052a3;
+            background-color: #333;
           }
           
           button:active {
             transform: scale(0.98);
           }
           
+          .btn-secondary {
+            background-color: transparent;
+            color: #1a1a1a;
+            border: 1px solid #e0e0e0;
+          }
+          
+          .btn-secondary:hover {
+            background-color: #f8f8f8;
+          }
+          
           a {
             text-decoration: none;
-            color: #0066cc;
+            color: #1a1a1a;
           }
           
           a:hover {
