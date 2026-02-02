@@ -3,7 +3,5 @@ export interface User {
   fname: string;
   lname: string;
   email: string;
-  gender: string;
-  address: string;
-  phno: string;
+  role: string;
 }
